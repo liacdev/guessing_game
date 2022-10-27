@@ -1,3 +1,4 @@
 fn main() {
-    println!("Hello, world!");
+    // This is a guessing game built in Rust language
+    println!("Guessing game!");
 }
