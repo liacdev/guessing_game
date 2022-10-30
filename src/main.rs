@@ -1,7 +1,9 @@
-use std::io;
 use rand:: Rng;
+use std::cmp::Ordering;
+use std::io;
 
 fn main() {
+
     // This is a guessing game built in Rust language
     println!("Guess the number!");
 
@@ -9,20 +11,34 @@ fn main() {
 
     println!("The secret number is: {secret_number}");
 
-    println!("Please input your guess.");
-    
-    let mut guess = String::new();
-    
-    io::stdin()
+    loop {
+        println!("Please input your guess.");
+        
+        println!("Please input your guess.");
+        
+        let mut guess = String::new();
+        
+        io::stdin()
         .read_line(&mut guess)
         .expect("Failed to read line");
-    
-    println!("You guessed: {guess}");
-// Test code 
+        
+        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        
+        println!("You guessed: {guess}");
+        
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => println!("You win!"),
+        }
+    }
+        
 
-    let x = 5;
-    let y = 10;
-
-    println!("x = {} and y = {}", x, y);
+    // Test code 
+/* 
+let x = 5;
+let y = 10;
+println!("x = {} and y = {}", x, y);
+*/
 
 }
